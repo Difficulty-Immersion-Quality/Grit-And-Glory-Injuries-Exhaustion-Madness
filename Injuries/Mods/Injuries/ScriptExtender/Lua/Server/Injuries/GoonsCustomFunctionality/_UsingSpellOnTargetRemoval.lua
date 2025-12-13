@@ -1,4 +1,4 @@
--- ==================================== Helper ====================================
+-- ==================================== Regex helper ====================================
 
 -- Escape Lua pattern magic characters so spell base is treated literally
 local function escape_lua_pattern(s)
@@ -87,7 +87,14 @@ function Goon_Song_Of_Rest_Check(spell)
   return Goon_InjurySpellCheck_Helper(spell, spellStrings, DefaultAffixes)
 end
 
--- ==================================== Event Hook ====================================
+-- ==================================== Statuses ====================================
+
+function Goon_Lesser_Restoration_Status_Check(status)
+  -- print("[StatusCheck] Lesser Restoration status:", status)
+  return status == 'MAG_JHANNYL_GLOVES_LESSER_RESTORATION'
+end
+
+-- ==================================== Listeners ====================================
 
 EventCoordinator:RegisterEventProcessor("UsingSpellOnTarget", function(caster, target, spell, spellType, spellElement, storyActionID)
   -- print("[Event] UsingSpellOnTarget -> caster:", caster, "target:", target, "spell:", spell)
@@ -111,13 +118,6 @@ EventCoordinator:RegisterEventProcessor("UsingSpellOnTarget", function(caster, t
     -- print("  -> No matching spell check for:", spell)
   end
 end)
-
--- ==================================== Statuses ====================================
-
-function Goon_Lesser_Restoration_Status_Check(status)
-  -- print("[StatusCheck] Lesser Restoration status:", status)
-  return status == 'MAG_JHANNYL_GLOVES_LESSER_RESTORATION'
-end
 
 Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(object, status, causee, storyActionID)
   -- print("[Event] StatusApplied -> object:", object, "status:", status, "causee:", causee)
