@@ -28,13 +28,13 @@ data "TickFunctors" ""
 data "StatusGroups" "SG_Exhausted"
 data "Passives" ""
 
-// ==================================== Incurable injury induced Exhaustion level 3 ====================================
+// ==================================== Unrestable injury induced Exhaustion level 3 ====================================
 
 new entry "GOON_EXHAUSTION_HOMEBREW_UNRESTABLE_3"
 type "StatusData"
 data "StatusType" "BOOST"
 using "GOON_EXHAUSTION_HOMEBREW_3"
-// Incurable Exhaustion: Level 3
+// Unrestable Exhaustion: Level 3
 data "DisplayName" "hbbc30396g4889g42f8gb7b6g500b3e112ba5"
 //
 data "StackId" "GOON_EXHAUSTION_HOMEBREW_UNRESTABLE"
