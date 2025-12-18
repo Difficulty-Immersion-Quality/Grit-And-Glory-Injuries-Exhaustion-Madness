@@ -42,7 +42,7 @@ local function GetRandomStatus(statusTable, object, isShortTerm)
         local selectedStatus = validStatuses[math.random(#validStatuses)]
 
         -- Adjust duration: Use 1-50 rounds for short-term madness, converted to seconds
-        local duration = isShortTerm and math.random(1, 50) * 6 or -1 -- 1-50 rounds for short-term, -1 for permanent
+        local duration = isShortTerm and math.random(1, 25) * 6 or -1 -- 1-25 rounds for short-term, -1 for permanent
 
         Osi.ApplyStatus(object, selectedStatus, duration, 1)
     end
