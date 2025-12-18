@@ -28,7 +28,7 @@ data "TickFunctors" ""
 data "StatusGroups" "SG_Exhausted"
 data "Passives" ""
 
-// ==================================== Incurable injury induced Exhaustion level 5 ====================================
+// ==================================== Unrestable injury induced Exhaustion level 5 ====================================
 
 new entry "GOON_EXHAUSTION_HOMEBREW_UNRESTABLE_5"
 type "StatusData"
