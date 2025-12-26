@@ -76,7 +76,7 @@
 										</node>
 									</children>
 								</node>
-								<node id="Action">
+								<!-- <node id="Action">
 									<attribute id="ActionType" type="int32" value="33" />
 									<children>
 										<node id="Attributes">
@@ -85,7 +85,7 @@
 											<attribute id="SkillID" type="FixedString" value="Goon_Target_Injury_Kit_Use" />
 										</node>
 									</children>
-								</node>
+								</node> -->
 							</children>
 						</node>		
 					</children>
