@@ -120,6 +120,7 @@ data "Icon" "Status_Exhaustion"
 data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
 
 // ==================================== Healing based injury removal system ====================================
+// TODO: Each injury gets their own damn saving throw at this point, keep it?
 
 // Injuries that can be removed by healing have this passive to apply the technical
 new entry "Goon_Healing_Injury_Removal_Technical_Passive"
