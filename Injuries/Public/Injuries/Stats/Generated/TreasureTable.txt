@@ -47,7 +47,23 @@ object category "I_Goon_OBJ_Injury_Kit_B",2,0,0,0,0,0,0,0
 new subtable "0,1;0,1;0,1;0,1;0,1;0,1;0,1;0,1;0,1;1,1"
 object category "I_Goon_OBJ_Injury_Kit_B",3,0,0,0,0,0,0,0
 
+new treasuretable "Supply_Lockpicks"
+CanMerge 1
+new subtable "0,1;0,1;1,1"
+object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
+
 // ==================================== Trader tables ====================================
+
+// Generic tables
+new treasuretable "Supplies_Vendor_Poor"
+CanMerge 1
+new subtable "0,1;0,1;1,1;2,1;3,1"
+object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
+
+new treasuretable "Gold_Trader_Wealthy"
+CanMerge 1
+new subtable "0,1;0,1;1,1;2,1;3,1;4,1;5,1"
+object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
 
 // Withers - Camp
 new treasuretable "DIQ_OBJ_Important_Container_TT"
@@ -73,7 +89,7 @@ CanMerge 1
 new subtable "5,1"
 object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
 
-// Cyrel (Fake Paladin of Tyr) - Tollhouse
+// Cyrel (Fake Paladin of Tyr) - Risen Road Toll House
 new treasuretable "PLA_Tollhouse_SuppliesTrader"
 CanMerge 1
 new subtable "3,1"
@@ -85,13 +101,19 @@ CanMerge 1
 new subtable "3,1"
 object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
 
+// Brem - Zhentarim Hideout
+new treasuretable "PLA_ZhentarimTrader_Common"
+CanMerge 1
+new subtable "3,1"
+object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
+
 // Derryth Bonecloak - Myconoid Colony
 new treasuretable "UND_MycoVillage_AlchemistDwarf_Trade"
 CanMerge 1
 new subtable "3,1"
 object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
 
-// Stonemason Kith - Grymforge
+// Stonemason Gergerann & Stonemason Kith - Grymforge
 new treasuretable "UND_KC_Trader_Utility"
 CanMerge 1
 new subtable "3,1"
@@ -159,6 +181,12 @@ object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
 
 // Fytz - Lower City (Stormshore Armoury)
 new treasuretable "LOW_SteepsTrader_Weapons"
+CanMerge 1
+new subtable "3,1"
+object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
+
+// Sticky Dondo - Lower City (Guildhall)
+new treasuretable "LOW_Guildhall_FetchersBrat_Trade"
 CanMerge 1
 new subtable "3,1"
 object category "I_Goon_OBJ_Injury_Kit_B",1,0,0,0,0,0,0,0
