@@ -1,16 +1,20 @@
 // ==================================== JWL Discordant Instruments - Triage Kit overhaul ====================================
 
 // Item
+
 new entry "JWL_DiscordantInstruments_TriageKit"
 type "Armor"
-using "JWL_DiscordantInstruments_Base_RR"
-data "RootTemplate" "69106843-75e0-4d7d-889a-aff684bf7313"
-data "ValueLevel" "3.75"
-data "Weight" "1.25"
-data "Boosts" "UnlockSpell(JWL_Target_Triage)"
+// using "JWL_DiscordantInstruments_Base_RR"
+// using "JWL_DiscordantInstruments_Base_Rare"
+using "JWL_DiscordantInstruments_TriageKit"
+// data "RootTemplate" "69106843-75e0-4d7d-889a-aff684bf7313"
+// data "ValueLevel" "3.75"
+// data "Weight" "1.25"
+// data "Boosts" "UnlockSpell(JWL_Target_TriageKit)"
+data "Boosts" "UnlockSpell(Goon_Target_Triage_Kit_Use)"
 
-// Spell
-new entry "JWL_Target_Triage"
+// Spell 
+new entry "Goon_Target_Triage_Kit_Use"
 type "SpellData"
 data "SpellType" "Target"
 //
