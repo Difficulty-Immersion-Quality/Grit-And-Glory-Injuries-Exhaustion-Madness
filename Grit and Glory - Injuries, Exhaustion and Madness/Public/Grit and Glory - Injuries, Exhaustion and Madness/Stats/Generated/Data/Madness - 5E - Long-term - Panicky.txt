@@ -19,7 +19,7 @@ data "StackType" "Overwrite"
 data "AuraRadius" ""
 data "AuraStatuses" ""
 // A calm emotions spell can suppress the effects of madness
-data "Boosts" "IF((not HasStatus('CALM_EMOTIONS')) and (not HasPassive('MindlessRage') and not HasStatus('SG_Rage'))):Disadvantage(Ability,Wisdom);IF((not HasStatus('CALM_EMOTIONS')) and (not HasPassive('MindlessRage') and not HasStatus('SG_Rage'))):Disadvantage(Ability,Charisma)"
+data "Boosts" ""
 data "OnApplyConditions" "Goon_InjuryEligibilityCheck(context.Source)"
 data "OnApplyFunctors" ""
 data "OnRemoveFunctors" ""
