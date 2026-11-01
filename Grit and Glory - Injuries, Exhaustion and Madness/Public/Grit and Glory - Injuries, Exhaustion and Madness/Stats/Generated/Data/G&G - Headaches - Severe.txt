@@ -1,5 +1,3 @@
-// TODO: Severe doesn't keep Wis save disadvantage from Minor?
-
 // ==================================== Filter Proxy ====================================
 
 new entry "GOON_INJURY_GRIT_GLORY_SEVERE_HEADACHES"
@@ -42,7 +40,7 @@ data "StackPriority" "2"
 data "StackType" "Ignore"
 data "AuraRadius" ""
 data "AuraStatuses" ""
-data "Boosts" ""
+data "Boosts" "Disadvantage(Ability,Wisdom);Disadvantage(SavingThrow,Wisdom)"
 data "OnApplyFunctors" ""
 data "OnRemoveFunctors" ""
 data "RemoveConditions" "not HasStatus('GOON_INJURY_GRIT_GLORY_SEVERE_HEADACHES')"
