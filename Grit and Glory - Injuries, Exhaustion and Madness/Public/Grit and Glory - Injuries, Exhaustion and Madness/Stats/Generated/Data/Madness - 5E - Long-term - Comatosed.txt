@@ -21,7 +21,7 @@ data "OnApplyConditions" "Goon_InjuryEligibilityCheck(context.Source)"
 data "OnApplyFunctors" "IF((not HasStatus('CALM_EMOTIONS')) and (not HasPassive('MindlessRage') and not HasStatus('SG_Rage'))):ApplyStatus(GOON_COMATOSED_LONGTERM_MADNESS_TECHNICAL,100,-1)"
 data "RemoveConditions" "not HasStatus('GOON_INJURY_GRIT_GLORY_LONGTERM_MADNESS')"
 data "RemoveEvents" "OnStatusRemoved"
-data "Passives" "Goon_Shortterm_Madness_5E_Removal_Passive;Goon_Comatosed_Longterm_Madness_Passive"
+data "Passives" "Goon_Longterm_Madness_5E_Removal_Passive;Goon_Comatosed_Longterm_Madness_Passive"
 
 // Technical passive for determining if the madness effects should be active
 new entry "Goon_Comatosed_Longterm_Madness_Passive"
