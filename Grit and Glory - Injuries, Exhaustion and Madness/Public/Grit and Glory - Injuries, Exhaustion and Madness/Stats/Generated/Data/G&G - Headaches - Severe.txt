@@ -1,3 +1,5 @@
+// TODO: Severe doesn't keep Wis save disadvantage from Minor?
+
 // ==================================== Filter Proxy ====================================
 
 new entry "GOON_INJURY_GRIT_GLORY_SEVERE_HEADACHES"

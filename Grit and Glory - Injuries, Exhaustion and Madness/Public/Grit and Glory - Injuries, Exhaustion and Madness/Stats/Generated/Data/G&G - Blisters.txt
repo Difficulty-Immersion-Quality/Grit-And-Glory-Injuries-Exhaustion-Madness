@@ -16,7 +16,7 @@ data "StackId" "GOON_INJURY_GRIT_GLORY_BLISTERS"
 data "StackPriority" ""
 data "StackType" "Overwrite"
 data "OnApplyConditions" "Goon_InjuryEligibilityCheck(context.Source)"
-data "OnApplyFunctors" "IF(HasStatus('GOON_DAMAGE_DEALT_ACID')):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_BLISTERS,100,-1);IF(not HasStatus('GOON_DAMAGE_DEALT_ACID')):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_BLISTERS,100,-1)"
+data "OnApplyFunctors" "ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_BLISTERS,100,-1)"
 data "RemoveConditions" "not HasStatus('GOON_REAL_INJURY_GRIT_GLORY_BLISTERS')"
 data "RemoveEvents" "OnStatusRemoved"
 
@@ -48,7 +48,7 @@ data "RemoveEvents" "OnStatusRemoved"
 data "TickType" ""
 data "TickFunctors" ""
 data "StatusGroups" ""
-data "Passives" "Goon_Healing_Injury_Removal_Technical_Passive;Goon_Grit_Glory_Blisters_Removal_Passive"
+data "Passives" "Goon_Grit_Glory_Blisters_Removal_Passive"
 //
 data "AnimationStart" ""
 data "AnimationLoop" ""
@@ -76,21 +76,6 @@ data "MaterialApplyWeapon" ""
 data "MaterialApplyNormalMap" ""
 data "MaterialFadeAmount" ""
 data "MaterialParameters" ""
-
-// Technical passive for removal
-new entry "Goon_Real_Injury_Grit_Glory_Blisters_Removal_Technical_Passive"
-type "PassiveData"
-// Injury: Blisters
-data "DisplayName" "h0bc85864g6ee0g4869gbd8age0510c02e0ed"
-//
-data "Description" "h4dda121fg7f26g4024ga953ge554d4eb82e1"
-data "DescriptionParams" ""
-data "TooltipSave" "Constitution"
-data "Properties" "IsHidden"
-//
-data "StatsFunctors" "IF(SavingThrow(Ability.Constitution,10)):RemoveStatus(GOON_INJURY_GRIT_GLORY_BLISTERS)"
-data "StatsFunctorContext" "OnHeal"
-data "Conditions" ""
 
 // ==================================== Removal system ====================================
 

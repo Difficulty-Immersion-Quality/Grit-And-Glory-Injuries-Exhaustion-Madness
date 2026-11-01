@@ -16,8 +16,8 @@ data "StackId" "GOON_INJURY_GRIT_GLORY_BRAIN_INJURY"
 data "StackPriority" ""
 data "StackType" "Overwrite"
 data "OnApplyConditions" "Goon_InjuryEligibilityCheck(context.Source)"
-data "OnApplyFunctors" "IF(not HasStatus('GOON_DAMAGE_DEALT_FORCE') and not HasStatus('GOON_DAMAGE_DEALT_NECROTIC')):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_BRAIN_INJURY,100,-1);IF(HasStatus('GOON_DAMAGE_DEALT_FORCE')):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_PLANE_SPLITTING_BRAIN_INJURY,100,-1);IF(HasStatus('GOON_DAMAGE_DEALT_NECROTIC')):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_SPIRITUAL_INJURY)"
-data "RemoveConditions" "not HasStatus('GOON_REAL_INJURY_GRIT_GLORY_BRAIN_INJURY') and not HasStatus('GOON_REAL_INJURY_GRIT_GLORY_PLANE_SPLITTING_BRAIN_INJURY') and not HasStatus('GOON_REAL_INJURY_GRIT_GLORY_SPIRITUAL_INJURY')"
+data "OnApplyFunctors" "IF(not HasAnyStatus({'GOON_DAMAGE_DEALT_FORCE','GOON_DAMAGE_DEALT_NECROTIC'})):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_BRAIN_INJURY,100,-1);IF(HasStatus('GOON_DAMAGE_DEALT_FORCE')):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_PLANE_SPLITTING_BRAIN_INJURY,100,-1);IF(HasStatus('GOON_DAMAGE_DEALT_NECROTIC')):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_SPIRITUAL_INJURY)"
+data "RemoveConditions" "not HasAnyStatus({'GOON_REAL_INJURY_GRIT_GLORY_BRAIN_INJURY','GOON_REAL_INJURY_GRIT_GLORY_PLANE_SPLITTING_BRAIN_INJURY','GOON_REAL_INJURY_GRIT_GLORY_SPIRITUAL_INJURY'})"
 data "RemoveEvents" "OnStatusRemoved"
 
 // ==================================== Real Injury ====================================
@@ -133,7 +133,6 @@ data "StatusType" "BOOST"
 data "DisplayName" "hdbad060ag6520g4f71ga58eg486c0bad4e82"
 //
 data "Description" "h349e6ff4g0427g4ec4gb259g01c20432b0f0"
-data "DescriptionParams" ""
 data "DescriptionParams" ""
 data "TooltipSave" "Constitution"
 data "Icon" "PassiveFeature_Generic_Blood"
