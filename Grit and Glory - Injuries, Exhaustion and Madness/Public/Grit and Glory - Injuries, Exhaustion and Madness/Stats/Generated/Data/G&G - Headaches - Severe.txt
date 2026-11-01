@@ -94,7 +94,7 @@ data "Properties" "IsHidden"
 //
 data "StatsFunctors" "ApplyStatus(STUNNED,100,1)"
 data "StatsFunctorContext" "OnDamaged"
-data "Conditions" "not IsLastConditionRollSuccess(ConditionRollType.ConditionSavingThrow) and IsSavingThrow() and IsDamageTypePsychic() or IsDamageTypeForce() or IsDamageTypeBludgeoning()"
+data "Conditions" "not IsLastConditionRollSuccess(ConditionRollType.ConditionSavingThrow) and IsSavingThrow() and (IsDamageTypePsychic() or IsDamageTypeForce() or IsDamageTypeBludgeoning())"
 
 // ==================================== Removal system ====================================
 
