@@ -110,23 +110,23 @@ end
 
 -- ==================================== Is left hand not work ====================================
 
-function Goon_Injury_Offhand_Check(entity)
-    entity = entity or context.Source
+function Goon_Injury_Offhand_Check(source)
+    source = source or context.Source
 
-    if WieldingWeapon('Melee', true, false, entity).Result        then return ConditionResult(true) end
-    if WieldingWeapon('Ranged', true, false, entity).Result       then return ConditionResult(true) end
-    if HasShieldEquipped(entity).Result                           then return ConditionResult(true) end
-    if WieldingWeapon('Twohanded', false, false, entity).Result   then return ConditionResult(true) end
-    if WieldingWeapon('Versatile', false, false, entity).Result   then return ConditionResult(true) end
+    if WieldingWeapon('Melee', true, false, source).Result        then return ConditionResult(true) end
+    if WieldingWeapon('Ranged', true, false, source).Result       then return ConditionResult(true) end
+    if HasShieldEquipped(source).Result                           then return ConditionResult(true) end
+    if WieldingWeapon('Twohanded', false, false, source).Result   then return ConditionResult(true) end
+    if WieldingWeapon('Versatile', false, false, source).Result   then return ConditionResult(true) end
     return ConditionResult(false)
 end
 
 -- ==================================== Exhaustion ====================================
 -- Worth testing again with better khn
 
-function Goon_Fall_Asleep_Ability_Check(entity)
-    entity = entity or context.Source
-    return ConditionResult(entity.Charisma >= entity.Constitution)
+function Goon_Fall_Asleep_Ability_Check(source)
+    source = source or context.Source
+    return ConditionResult(source.Charisma >= source.Constitution)
 end
 
 -- ==================================== Somatic/Verbal checks ====================================
@@ -146,4 +146,16 @@ function Goon_Injury_Spell_Check_Verbal()
     if HasStringInSpellRoll('SavingThrow').Result                then return ConditionResult(true) end
     if HasStringInFunctorConditions('SavingThrow').Result        then return ConditionResult(true) end
     return ConditionResult(false)
+end
+
+-- ==================================== Madness removal checks ====================================
+
+function Goon_HasLongtermMadness(target)
+    target = target or context.Target
+    return HasAnyStatus({ 'GOON_MADNESS_5E_LONGTERM_CODEPENDANT', 'GOON_MADNESS_5E_LONGTERM_COMATOSED', 'GOON_MADNESS_5E_LONGTERM_HALLUCINATIONS', 'GOON_MADNESS_5E_LONGTERM_PANICKY', 'GOON_MADNESS_5E_LONGTERM_PARANOIA', 'GOON_MADNESS_5E_LONGTERM_TREMORS' }, {}, {}, target)
+end
+
+function Goon_HasShorttermMadness(target)
+    target = target or context.Target
+    return HasAnyStatus({ 'GOON_MADNESS_5E_SHORTTERM_HALLUCINATIONS', 'GOON_MADNESS_5E_SHORTTERM_HOMICIDAL', 'GOON_MADNESS_5E_SHORTTERM_HYSTERIA', 'GOON_MADNESS_5E_SHORTTERM_INTIMIDATED', 'GOON_MADNESS_5E_SHORTTERM_PARALYSED', 'GOON_MADNESS_5E_SHORTTERM_STUNNED', 'GOON_MADNESS_5E_SHORTTERM_TONGUE_TIED', 'GOON_MADNESS_5E_SHORTTERM_UNCONSCIOUS' }, {}, {}, target)
 end

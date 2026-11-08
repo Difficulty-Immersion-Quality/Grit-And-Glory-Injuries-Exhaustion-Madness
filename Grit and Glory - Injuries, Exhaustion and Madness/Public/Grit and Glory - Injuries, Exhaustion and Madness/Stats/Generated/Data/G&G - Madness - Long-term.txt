@@ -43,12 +43,12 @@ data "AuraStatuses" ""
 data "Boosts" ""
 data "OnApplyFunctors" ""
 data "OnRemoveFunctors" ""
-data "RemoveConditions" "not HasStatus('GOON_INJURY_GRIT_GLORY_LONGTERM_MADNESS')"
+data "RemoveConditions" "not HasStatus('GOON_INJURY_GRIT_GLORY_LONGTERM_MADNESS') or not Goon_HasLongtermMadness()"
 data "RemoveEvents" "OnStatusRemoved"
 data "TickType" ""
 data "TickFunctors" ""
 data "StatusGroups" ""
-data "Passives" "Goon_Grit_Glory_Longterm_Madness_Removal_Passive"
+data "Passives" ""
 //
 data "AnimationStart" ""
 data "AnimationLoop" ""
@@ -76,33 +76,6 @@ data "MaterialApplyWeapon" ""
 data "MaterialApplyNormalMap" ""
 data "MaterialFadeAmount" ""
 data "MaterialParameters" ""
-
-// ==================================== Removal system ====================================
-
-// Technical passive for removal
-new entry "Goon_Grit_Glory_Longterm_Madness_Removal_Passive"
-type "PassiveData"
-data "Properties" "IsHidden"
-//
-data "StatsFunctors" "IF(context.HasContextFlag(StatsFunctorContext.OnStatusRemoved)):ApplyStatus(GOON_GRIT_GLORY_LONGTERM_MADNESS_REMOVAL,100,0)"
-data "StatsFunctorContext" "OnStatusRemoved"
-data "Conditions" "(context.HasContextFlag(StatsFunctorContext.OnStatusRemoved) and not HasStatus('GOON_MADNESS_5E_LONGTERM_CODEPENDANT') and not HasStatus('GOON_MADNESS_5E_LONGTERM_COMATOSED') and not HasStatus('GOON_MADNESS_5E_LONGTERM_HALLUCINATIONS') and not HasStatus('GOON_MADNESS_5E_LONGTERM_PANICKY') and not HasStatus('GOON_MADNESS_5E_LONGTERM_PARANOIA') and not HasStatus('GOON_MADNESS_5E_LONGTERM_TREMORS'))"
-
-// Status for use in configuration to disable/enable default removal system
-new entry "GOON_GRIT_GLORY_LONGTERM_MADNESS_REMOVAL"
-type "StatusData" 
-data "StatusType" "BOOST" 
-// Injury: Long-term Madness
-data "DisplayName" "h9b49eecag0de9g498fg8dbeg051f268d7daa"
-//
-data "Description" "he57aa4f3g8f26g4648gbd15gc1b7b45f87ee"
-data "DescriptionParams" ""
-data "TooltipSave" "Constitution"
-data "Icon" "PassiveFeature_Generic_Blood"
-data "FormatColor" "Red"
-data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator;ApplyToDead;IgnoreResting"
-//
-//data "OnApplyFunctors" "RemoveStatus(GOON_INJURY_GRIT_GLORY_LONGTERM_MADNESS)"
 
 // ==================================== Long rest tracking ====================================
 
