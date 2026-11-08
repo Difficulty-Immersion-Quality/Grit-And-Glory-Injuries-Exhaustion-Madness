@@ -71,7 +71,7 @@ data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndi
 data "StackId" "GOON_INTIMIDATED_IN_RANGE"
 data "StackPriority" "10"
 data "AuraRadius" "3"
-data "AuraStatuses" "IF((Enemy() and not Tagged('INANIMATE') and HasStatus('GOON_MADNESS_5E_INTIMIDATED')) and ((not HasStatus('CALM_EMOTIONS')) and (not HasPassive('MindlessRage') and not HasStatus('SG_Rage')))):ApplyStatus(GOON_INTIMIDATED_IN_RANGE_TECHNICAL)"
+data "AuraStatuses" "IF((Enemy() and not Tagged('INANIMATE') and HasStatus('GOON_MADNESS_5E_SHORTTERM_INTIMIDATED')) and ((not HasStatus('CALM_EMOTIONS')) and (not HasPassive('MindlessRage') and not HasStatus('SG_Rage')))):ApplyStatus(GOON_INTIMIDATED_IN_RANGE_TECHNICAL)"
 
 new entry "GOON_INTIMIDATED_IN_RANGE_TECHNICAL"
 type "StatusData"

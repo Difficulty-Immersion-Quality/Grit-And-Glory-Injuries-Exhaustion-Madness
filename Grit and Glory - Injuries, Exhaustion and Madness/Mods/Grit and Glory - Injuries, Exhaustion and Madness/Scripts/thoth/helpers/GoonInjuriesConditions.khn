@@ -1,47 +1,124 @@
 -- ==================================== Eligibility checks for injury application ====================================
 
 -- Blindness: Full & Blindness: Partial
-function Goon_IsCreatureBlindable()
-    return Goon_InjuryEligibilityCheck() & ~IsImmuneToStatus('BLINDED') & ~IsImmuneToStatus('BLINDNESS') & ~IsImmuneToStatus('SG_Blinded') & ~Tagged('BLINDSIGHT')
+function Goon_IsCreatureBlindable(target)
+    target = target or context.Target
+
+    if not Goon_InjuryEligibilityCheck(target).Result     then return ConditionResult(false) end
+    if IsImmuneToStatus('BLINDED', target).Result         then return ConditionResult(false) end
+    if IsImmuneToStatus('BLINDNESS', target).Result       then return ConditionResult(false) end
+    if IsImmuneToStatus('SG_Blinded', target).Result      then return ConditionResult(false) end
+    if Tagged('BLINDSIGHT', target).Result                then return ConditionResult(false) end
+    return ConditionResult(true)
 end
 
 -- Destroyed Foot & Frostbitten Foot - Tagged('INNATE_FLYER')
-function Goon_IsCreatureWithImpedableMovement()
-    return Goon_InjuryEligibilityCheck() & ~Tagged('OOZE') & ~HasAttribute('Floating') & ~IsImmuneToStatus('CRIPPLED') & ~IsImmuneToStatus('RESTRAINED') & ~IsImmuneToStatus('SG_Restrained')
+function Goon_IsCreatureWithImpedableMovement(target)
+    target = target or context.Target
+
+    if not Goon_InjuryEligibilityCheck(target).Result     then return ConditionResult(false) end
+    if Tagged('OOZE', target).Result                      then return ConditionResult(false) end
+    if HasAttribute('Floating', target).Result            then return ConditionResult(false) end
+    if IsImmuneToStatus('CRIPPLED', target).Result        then return ConditionResult(false) end
+    if IsImmuneToStatus('RESTRAINED', target).Result      then return ConditionResult(false) end
+    if IsImmuneToStatus('SG_Restrained', target).Result   then return ConditionResult(false) end
+    return ConditionResult(true)
 end
 
 -- Destroyed Forelimb & Frostbitten Forelimb
-function Goon_IsCreatureWithForelimbs()
-    return Goon_InjuryEligibilityCheck() & ~Tagged('OOZE') & ~Tagged('SPECTATOR') & ~Tagged('BEHOLDER')
+function Goon_IsCreatureWithForelimbs(target)
+    target = target or context.Target
+
+    if not Goon_InjuryEligibilityCheck(target).Result     then return ConditionResult(false) end
+    if Tagged('OOZE', target).Result                      then return ConditionResult(false) end
+    if Tagged('SPECTATOR', target).Result                 then return ConditionResult(false) end
+    if Tagged('BEHOLDER', target).Result                  then return ConditionResult(false) end
+    return ConditionResult(true)
 end
 
 -- All invulnerable and invulnerable adjacent entities excluded (Di handled it with SE too) + Mod support for Minthara Auto-Knockout and Bonk Enhanced
-function Goon_InjuryEligibilityCheck()
-    return ~HasPassive('Ethereal') & ~IsImmuneToStatus('SG_Condition') & ~HasAnyStatus({'DEBRIS_THRESHOLD_LESSER','DEBRIS_THRESHOLD','DEBRIS_THRESHOLD_GREATER','FLOATING_HEAD_VFX'}) & ~Tagged('SCRYING_EYE') & ~Tagged('BANITE_BANEGHOST') & ~HasAnyStatus({'INVULNERABLE','INVULNERABLE_NOT_SHOWN','MOO_KETHERIC_INVULNERABLE','GLO_MIZORA_INVULNERABLE','GLO_MIZORA_INVULNERABLE','GLO_MIZORA_INVULNERABLE','GLO_MIZORA_INVULNERABLE','END_WALLOFFORCE','GLOBE_OF_INVULNERABILITY','LOW_CAZADORSPALACE_PRISONER_INVULNERABILITY','QUEST_Indestructible','QUEST_Indestructible_Camp_Bedroll','LOW_SORRCEROUSSUNDRIES_INVULNERABLE','LOW_RAMAZITHSTOWER_GLOBE_OF_INVULNERABILITY_ITEM','LOW_RAMAZITHSTOWER_NIGHTSONG_GLOBE_FUNCTIONAL_AURA','LOW_RAMAZITHSTOWER_NIGHTSONG_GLOBE_FUNCTIONAL_STATUS','COL_TADPOLINGCENTRE_INPOD','TUT_MINDFLAYERPOD','Cannon_Nautiloid','TWN_TOLLHOUSE_SHADOWVISAGE','HAG_VICTIM2','EPI_AVATAR_GHOST','GLO_KORRILLA_PROJECTEDIMAGE','DIVINE_INTERVENTION_SHIELD','LOW_HOH_DAMNEDSOUL','SCL_SHADOWFELL_AURA','GLO_NIGHTSONGRESURRECTION_DOWNED','BANISHED','LOW_HOH_HOPESPIRIT','ETHEREALNESS_INCUBUS','GRAPPLED','COL_NIGHTSONG_SOULCAGE','LOW_GHOST_DISAPPEAR','RESILIENT_SPHERE','GASEOUSFORM_BLINK','BONK_ENHANCED_DOWNED_AND_OUT','FAVOURED_ABSOLUTE_ACTIVE'})
+function Goon_InjuryEligibilityCheck(target)
+    target = target or context.Target
+
+    if HasPassive('Ethereal', target).Result           then return ConditionResult(false) end
+    if IsImmuneToStatus('SG_Condition', target).Result then return ConditionResult(false) end
+    if Tagged('SCRYING_EYE', target).Result            then return ConditionResult(false) end
+    if Tagged('BANITE_BANEGHOST', target).Result       then return ConditionResult(false) end
+
+    local statuses = { 'DEBRIS_THRESHOLD_LESSER',
+                       'DEBRIS_THRESHOLD',
+                       'DEBRIS_THRESHOLD_GREATER',
+                       'FLOATING_HEAD_VFX',
+                       'INVULNERABLE',
+                       'INVULNERABLE_NOT_SHOWN',
+                       'MOO_KETHERIC_INVULNERABLE',
+                       'GLO_MIZORA_INVULNERABLE',
+                       'END_WALLOFFORCE',
+                       'GLOBE_OF_INVULNERABILITY',
+                       'LOW_CAZADORSPALACE_PRISONER_INVULNERABILITY',
+                       'QUEST_Indestructible',
+                       'QUEST_Indestructible_Camp_Bedroll',
+                       'LOW_SORRCEROUSSUNDRIES_INVULNERABLE',
+                       'LOW_RAMAZITHSTOWER_GLOBE_OF_INVULNERABILITY_ITEM',
+                       'LOW_RAMAZITHSTOWER_NIGHTSONG_GLOBE_FUNCTIONAL_AURA',
+                       'LOW_RAMAZITHSTOWER_NIGHTSONG_GLOBE_FUNCTIONAL_STATUS',
+                       'COL_TADPOLINGCENTRE_INPOD',
+                       'TUT_MINDFLAYERPOD',
+                       'Cannon_Nautiloid',
+                       'TWN_TOLLHOUSE_SHADOWVISAGE',
+                       'HAG_VICTIM2',
+                       'EPI_AVATAR_GHOST',
+                       'GLO_KORRILLA_PROJECTEDIMAGE',
+                       'DIVINE_INTERVENTION_SHIELD',
+                       'LOW_HOH_DAMNEDSOUL',
+                       'SCL_SHADOWFELL_AURA',
+                       'GLO_NIGHTSONGRESURRECTION_DOWNED',
+                       'BANISHED',
+                       'LOW_HOH_HOPESPIRIT',
+                       'ETHEREALNESS_INCUBUS',
+                       'GRAPPLED',
+                       'COL_NIGHTSONG_SOULCAGE',
+                       'LOW_GHOST_DISAPPEAR',
+                       'RESILIENT_SPHERE',
+                       'GASEOUSFORM_BLINK',
+                       'BONK_ENHANCED_DOWNED_AND_OUT',
+                       'FAVOURED_ABSOLUTE_ACTIVE' }
+
+    if HasAnyStatus(statuses, {}, {}, target).Result   then return ConditionResult(false) end
+    return ConditionResult(true)
 end
 
-function Goon_IsCreatureCategory()
-    return Tagged('ABERRATION')
-         | Tagged('BEAST') 
-         | Tagged('CELESTIAL')
-         | Tagged('CONSTRUCT')
-         | Tagged('DRAGON')
-         | Tagged('ELEMENTAL')
-         | Tagged('FEY')
-         | Tagged('FIEND')
-         | Tagged('GIANT')
-         | Tagged('HUMANOID') 
-         | Tagged('MONSTROSITY')
-         | Tagged('OOZE')
-         | Tagged('PLANT')
-         | Tagged('UNDEAD')
+function Goon_IsCreatureCategory(target)
+    target = target or context.Target
+
+    if Tagged('ABERRATION', target).Result    then return ConditionResult(true) end
+    if Tagged('BEAST', target).Result         then return ConditionResult(true) end
+    if Tagged('CELESTIAL', target).Result     then return ConditionResult(true) end
+    if Tagged('CONSTRUCT', target).Result     then return ConditionResult(true) end
+    if Tagged('DRAGON', target).Result        then return ConditionResult(true) end
+    if Tagged('ELEMENTAL', target).Result     then return ConditionResult(true) end
+    if Tagged('FEY', target).Result           then return ConditionResult(true) end
+    if Tagged('FIEND', target).Result         then return ConditionResult(true) end
+    if Tagged('GIANT', target).Result         then return ConditionResult(true) end
+    if Tagged('HUMANOID', target).Result      then return ConditionResult(true) end
+    if Tagged('MONSTROSITY', target).Result   then return ConditionResult(true) end
+    if Tagged('OOZE', target).Result          then return ConditionResult(true) end
+    if Tagged('PLANT', target).Result         then return ConditionResult(true) end
+    if Tagged('UNDEAD', target).Result        then return ConditionResult(true) end
+    return ConditionResult(false)
 end
 
 -- ==================================== Is left hand not work ====================================
 
 function Goon_Injury_Offhand_Check(entity)
     entity = entity or context.Source
-    return WieldingWeapon('Melee', true, false, entity) | WieldingWeapon('Ranged', true, false, entity) | HasShieldEquipped(entity) | WieldingWeapon('Twohanded', false, false, entity) | WieldingWeapon('Versatile', false, false, entity)
+
+    if WieldingWeapon('Melee', true, false, entity).Result        then return ConditionResult(true) end
+    if WieldingWeapon('Ranged', true, false, entity).Result       then return ConditionResult(true) end
+    if HasShieldEquipped(entity).Result                           then return ConditionResult(true) end
+    if WieldingWeapon('Twohanded', false, false, entity).Result   then return ConditionResult(true) end
+    if WieldingWeapon('Versatile', false, false, entity).Result   then return ConditionResult(true) end
+    return ConditionResult(false)
 end
 
 -- ==================================== Exhaustion ====================================
@@ -56,9 +133,17 @@ end
 -- I don't think I knew what I was doing here kekw
 
 function Goon_Injury_Spell_Check_Somatic()
-    return (HasStringInSpellRoll('SavingThrow') | HasStringInFunctorConditions('SavingThrow')) & (HasSpellFlag(SpellFlags.Spell) & HasSpellFlag(SpellFlags.HasSomaticComponent))
+    if not HasSpellFlag(SpellFlags.Spell).Result                 then return ConditionResult(false) end
+    if not HasSpellFlag(SpellFlags.HasSomaticComponent).Result   then return ConditionResult(false) end
+    if HasStringInSpellRoll('SavingThrow').Result                then return ConditionResult(true) end
+    if HasStringInFunctorConditions('SavingThrow').Result        then return ConditionResult(true) end
+    return ConditionResult(false)
 end
 
 function Goon_Injury_Spell_Check_Verbal()
-    return (HasStringInSpellRoll('SavingThrow') | HasStringInFunctorConditions('SavingThrow')) & (HasSpellFlag(SpellFlags.Spell) & HasSpellFlag(SpellFlags.HasVerbalComponent))
+    if not HasSpellFlag(SpellFlags.Spell).Result                 then return ConditionResult(false) end
+    if not HasSpellFlag(SpellFlags.HasVerbalComponent).Result    then return ConditionResult(false) end
+    if HasStringInSpellRoll('SavingThrow').Result                then return ConditionResult(true) end
+    if HasStringInFunctorConditions('SavingThrow').Result        then return ConditionResult(true) end
+    return ConditionResult(false)
 end

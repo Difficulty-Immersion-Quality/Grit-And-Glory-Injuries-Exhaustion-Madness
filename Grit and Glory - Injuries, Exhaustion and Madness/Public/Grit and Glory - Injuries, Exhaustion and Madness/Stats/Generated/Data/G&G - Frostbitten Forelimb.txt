@@ -102,7 +102,7 @@ using "GOON_REAL_INJURY_GRIT_GLORY_FROSTBITTEN_HAND_TECHNICAL"
 data "StackId" "GOON_REAL_INJURY_GRIT_GLORY_FROSTBITTEN_HAND_BOOST_TECHNICAL"
 data "StackPriority" ""
 data "StackType" "Overwrite"
-data "Boosts" "IF(Goon_Injury_Offhand_Check(true)):Disadvantage(Ability,Strength);IF(Goon_Injury_Offhand_Check(true)):Disadvantage(Ability,Dexterity);IF(Goon_Injury_Offhand_Check(true)):Disadvantage(AttackRoll);IF(Goon_Injury_Offhand_Check(true) and HasSpellFlag(SpellFlags.HasSomaticComponent)):SpellSaveDC(-5)"
+data "Boosts" "IF(Goon_Injury_Offhand_Check(context.Source)):Disadvantage(Ability,Strength);IF(Goon_Injury_Offhand_Check(context.Source)):Disadvantage(Ability,Dexterity);IF(Goon_Injury_Offhand_Check(context.Source)):Disadvantage(AttackRoll);IF(Goon_Injury_Offhand_Check(context.Source) and HasSpellFlag(SpellFlags.HasSomaticComponent)):SpellSaveDC(-5)"
 data "OnApplyFunctors" ""
 data "SoundVocalStart" "DEATH"
 

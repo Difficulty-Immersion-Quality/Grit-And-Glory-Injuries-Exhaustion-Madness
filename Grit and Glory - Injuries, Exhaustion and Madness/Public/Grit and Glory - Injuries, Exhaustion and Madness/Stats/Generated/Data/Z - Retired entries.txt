@@ -1,3 +1,5 @@
+// TODO: If it's retired why my ass applying it all over the place smh.
+
 // For Passive application
 new entry "GOON_HEALING_INJURY_REMOVAL_TECHNICAL"
 type "StatusData"

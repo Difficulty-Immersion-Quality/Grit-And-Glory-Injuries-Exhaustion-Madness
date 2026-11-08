@@ -71,7 +71,7 @@ data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndi
 data "StackId" "GOON_CODEPENDANT_IN_RANGE"
 data "StackPriority" "10"
 data "AuraRadius" "10"
-data "AuraStatuses" "IF(Ally() and not Tagged('INANIMATE') and HasStatus('GOON_MADNESS_5E_CODEPENDANT')):ApplyStatus(GOON_CODEPENDANT_IN_RANGE_TECHNICAL)"
+data "AuraStatuses" "IF(Ally() and not Tagged('INANIMATE') and HasStatus('GOON_MADNESS_5E_LONGTERM_CODEPENDANT')):ApplyStatus(GOON_CODEPENDANT_IN_RANGE_TECHNICAL)"
 
 new entry "GOON_CODEPENDANT_IN_RANGE_TECHNICAL"
 type "StatusData"

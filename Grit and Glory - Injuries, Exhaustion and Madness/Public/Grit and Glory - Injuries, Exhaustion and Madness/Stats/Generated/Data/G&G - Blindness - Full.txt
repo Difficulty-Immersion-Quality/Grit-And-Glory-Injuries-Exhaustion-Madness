@@ -1,3 +1,6 @@
+// TODO: Blindness implementation sucks. Needs to be dynamic, and inherit the conditions boosts properly.
+// TODO: Previously the status immunity didn't even work, so I'm commenting out the fix for now pending changes.
+
 // ==================================== Filter Proxy ====================================
 
 new entry "GOON_INJURY_GRIT_GLORY_BLINDNESS"
@@ -40,7 +43,8 @@ data "StackPriority" "2"
 data "StackType" "Ignore"
 data "AuraRadius" ""
 data "AuraStatuses" ""
-data "Boosts" "Disadvantage(AttackRoll);Advantage(AttackTarget);SightRangeMaximum(3);StatusImmunity('BLINDED')"
+// data "Boosts" "Disadvantage(AttackRoll);Advantage(AttackTarget);SightRangeMaximum(3);StatusImmunity(BLINDED)"
+data "Boosts" "Disadvantage(AttackRoll);Advantage(AttackTarget);SightRangeMaximum(3)"
 data "OnApplyFunctors" ""
 data "OnRemoveFunctors" ""
 data "RemoveConditions" "not HasStatus('GOON_INJURY_GRIT_GLORY_BLINDNESS')"
@@ -86,7 +90,7 @@ data "Properties" "IsHidden"
 //
 data "StatsFunctors" "IF(context.HasContextFlag(StatsFunctorContext.OnStatusApplied)):ApplyStatus(GOON_GRIT_GLORY_BLINDNESS_REMOVAL,100,0)"
 data "StatsFunctorContext" "OnStatusApplied"
-data "Conditions" "(context.HasContextFlag(StatsFunctorContext.OnStatusApplied) and StatusId('GOON_INJURY_KIT_INJURY_REMOVAL') or StatusId('GOON_GREATER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_HEAL_INJURY_REMOVAL') or StatusId('GOON_REGENERATE_INJURY'))"
+data "Conditions" "(context.HasContextFlag(StatsFunctorContext.OnStatusApplied) and StatusId('GOON_INJURY_KIT_INJURY_REMOVAL') or StatusId('GOON_GREATER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_HEAL_INJURY_REMOVAL') or StatusId('GOON_REGENERATE_INJURY_REMOVAL'))"
 
 // Status for use in configuration to disable/enable default removal system
 new entry "GOON_GRIT_GLORY_BLINDNESS_REMOVAL"

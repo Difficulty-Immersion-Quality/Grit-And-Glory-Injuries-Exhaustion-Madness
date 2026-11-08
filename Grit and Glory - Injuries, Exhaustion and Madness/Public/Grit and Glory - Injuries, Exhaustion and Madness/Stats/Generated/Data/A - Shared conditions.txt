@@ -12,7 +12,7 @@ data "StackPriority" "20"
 data "ApplyEffect" "fa688204-319c-41b2-88d9-7b619d17aed4"
 data "StatusGroups" "SG_Surface;SG_Poisoned"
 //data "StatusEffect" "ceeda0ca-0739-4588-a449-d024389f0c2a"
-data "RemoveConditions" "not HasStatus('GOON_INJURY_GRIT_GLORY_MAJOR_KIDNEY_FAILURE') and not HasStatus('GOON_INJURY_GRIT_GLORY_MAJOR_LIVER_DAMAGE') and not HasStatus('GOON_INJURY_GRIT_GLORY_MINOR_KIDNEY_FAILURE') and not HasStatus('GOON_INJURY_GRIT_GLORY_MINOR_LIVER_DAMAGE')"
+data "RemoveConditions" "not HasAnyStatus({'GOON_INJURY_GRIT_GLORY_MAJOR_KIDNEY_FAILURE','GOON_INJURY_GRIT_GLORY_MAJOR_LIVER_DAMAGE','GOON_INJURY_GRIT_GLORY_MINOR_KIDNEY_FAILURE','GOON_INJURY_GRIT_GLORY_MINOR_LIVER_DAMAGE'})"
 data "RemoveEvents" "OnStatusRemoved"
 
 // ==================================== Deafened, more of a buff than a debuff lmao ====================================
@@ -127,7 +127,7 @@ data "StatusType" "BOOST"
 using "CONFUSION"
 data "StatusPropertyFlags" "LoseControl;OverheadOnTurn;InitiateCombat;BringIntoCombat;ApplyToDead"
 //
-data "RemoveConditions" "SavingThrow(Ability.Wisdom,15) or ((not HasStatus('CALM_EMOTIONS')) and (not HasPassive('MindlessRage') and not HasStatus('SG_Rage')))"
+data "RemoveConditions" "SavingThrow(Ability.Wisdom,15) or HasStatus('CALM_EMOTIONS') or (HasPassive('MindlessRage') and HasStatus('SG_Rage'))"
 data "StackType" "Ignore"
 
 // Custom Intimidating Presence for less wackiness
@@ -139,4 +139,4 @@ data "StatusPropertyFlags" "InitiateCombat;OverheadOnTurn;ApplyToDead"
 //
 data "StackPriority" "2"
 data "StackType" "Ignore"
-data "RemoveConditions" "((HasStatus('CALM_EMOTIONS')) and (HasPassive('MindlessRage') and HasStatus('SG_Rage')))"
+data "RemoveConditions" "HasStatus('CALM_EMOTIONS') or (HasPassive('MindlessRage') and HasStatus('SG_Rage'))"

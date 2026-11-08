@@ -29,7 +29,7 @@ data "StatusType" "BOOST"
 data "DisplayName" "h6d702a99g20a4g4dd5gb1c2ga7b852eca0d5"
 //
 data "Description" "h7f96e349g65f8g43f1g9c27g2fd915dde55a"
-data "DescriptionParams" ""
+data "DescriptionParams" "DealDamage(,Bludgeoning);DealDamage(,Force);DealDamage(,Psychic)"
 data "TooltipSave" ""
 data "Icon" "PassiveFeature_Generic_Blood"
 data "FormatColor" "Red"
@@ -90,7 +90,7 @@ data "Properties" "IsHidden"
 //
 data "StatsFunctors" "ApplyStatus(STUNNED,100,1)"
 data "StatsFunctorContext" "OnDamaged"
-data "Conditions" "not IsLastConditionRollSuccess(ConditionRollType.ConditionSavingThrow) and IsSavingThrow() and IsDamageTypePsychic() or IsDamageTypeForce() or IsDamageTypeBludgeoning()"
+data "Conditions" "not IsLastConditionRollSuccess(ConditionRollType.ConditionSavingThrow) and IsSavingThrow() and (IsDamageTypePsychic() or IsDamageTypeForce() or IsDamageTypeBludgeoning())"
 
 // ==================================== Removal system ====================================
 
@@ -111,7 +111,7 @@ data "StatusType" "BOOST"
 data "DisplayName" "h6d702a99g20a4g4dd5gb1c2ga7b852eca0d5"
 //
 data "Description" "h7f96e349g65f8g43f1g9c27g2fd915dde55a"
-data "DescriptionParams" ""
+data "DescriptionParams" "DealDamage(,Bludgeoning);DealDamage(,Force);DealDamage(,Psychic)"
 data "TooltipSave" "Constitution"
 data "Icon" "PassiveFeature_Generic_Blood"
 data "FormatColor" "Red"

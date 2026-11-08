@@ -5,7 +5,7 @@ type "PassiveData"
 // Exhaustion
 data "DisplayName" "h48662068g7920g405dg9263gef8a2079d513"
 data "Properties" "IsHidden"
-data "Boosts" "IF(HasStatus('GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_1',context.Target) or HasStatus('GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_2',context.Target)):ReduceCriticalAttackThreshold(1);IF(HasStatus('GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_3',context.Target) or HasStatus('GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_4',context.Target)):ReduceCriticalAttackThreshold(2);IF(HasStatus('GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_5',context.Target) or HasStatus('GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_6',context.Target)):ReduceCriticalAttackThreshold(3);IF(HasStatus('GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_7',context.Target)):CriticalHit(AttackTarget,Success,Always)"
+data "Boosts" "IF(HasAnyStatus({'GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_1','GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_2'},{},{},context.Target)):ReduceCriticalAttackThreshold(1);IF(HasAnyStatus({'GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_3','GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_4'},{},{},context.Target)):ReduceCriticalAttackThreshold(2);IF(HasAnyStatus({'GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_5','GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_6'},{},{},context.Target)):ReduceCriticalAttackThreshold(3);IF(HasStatus('GOON_BOOSTS_EXHAUSTION_HOMEBREW_TECHNICAL_7',context.Target)):CriticalHit(AttackTarget,Success,Always)"
 
 // ==================================== Damage detection ====================================
 
@@ -100,7 +100,7 @@ new entry "Goon_Attack_Detect"
 type "PassiveData"
 data "Properties" "IsHidden"
 data "StatsFunctorContext" "OnDamaged"
-data "StatsFunctors" "IF(IsMeleeWeaponAttack()):ApplyStatus(GOON_ATTACKED_MELEE_WEAPON,100,1);IF(IsRangedWeaponAttack()):ApplyStatus(GOON_ATTACKED_RANGED_WEAPON,100,1);IF(IsMeleeUnarmedAttack()):ApplyStatus(GOON_ATTACKED_MELEE_UNARMED,100,1);IF(IsRangedUnarmedAttack()):ApplyStatus(GOON_ATTACKED_RANGED_UNARMED,100,1);IF(IsMeleeSpellAttack()):ApplyStatus(GOON_ATTACKED_MELEE_SPELL,100,1);IF(IsRangedSpellAttack()):ApplyStatus(GOON_ATTACKED_RANGED_SPELL,100,1);IF(NotMeleeSpellAttack() and not RangedSpellAttack() and is Spell()):ApplyStatus(GOON_ATTACKED_SPELL_SPELL,100,1)"
+data "StatsFunctors" "IF(IsMeleeWeaponAttack()):ApplyStatus(GOON_ATTACKED_MELEE_WEAPON,100,1);IF(IsRangedWeaponAttack()):ApplyStatus(GOON_ATTACKED_RANGED_WEAPON,100,1);IF(IsMeleeUnarmedAttack()):ApplyStatus(GOON_ATTACKED_MELEE_UNARMED,100,1);IF(IsRangedUnarmedAttack()):ApplyStatus(GOON_ATTACKED_RANGED_UNARMED,100,1);IF(IsMeleeSpellAttack()):ApplyStatus(GOON_ATTACKED_MELEE_SPELL,100,1);IF(IsRangedSpellAttack()):ApplyStatus(GOON_ATTACKED_RANGED_SPELL,100,1);IF(not IsMeleeSpellAttack() and not IsRangedSpellAttack() and IsSpell()):ApplyStatus(GOON_ATTACKED_SPELL_SPELL,100,1)"
 
 // Template 
 new entry "GOON_ATTACKED_TEMPLATE"

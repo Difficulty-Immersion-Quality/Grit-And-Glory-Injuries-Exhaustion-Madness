@@ -17,7 +17,7 @@ data "StackPriority" "1"
 data "StackType" "Overwrite"
 data "OnApplyConditions" "Goon_InjuryEligibilityCheck(context.Source)"
 data "OnApplyFunctors" "ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_MINOR_CONCUSSION,100,-1)"
-data "RemoveConditions" "not HasStatus('GOON_REAL_INJURY_GRIT_GLORY_MINOR_CONCUSSION') and not HasStatus('GOON_REAL_INJURY_GRIT_GLORY_MAJOR_CONCUSSION')"
+data "RemoveConditions" "not HasAnyStatus({'GOON_REAL_INJURY_GRIT_GLORY_MINOR_CONCUSSION','GOON_REAL_INJURY_GRIT_GLORY_MAJOR_CONCUSSION'})"
 data "RemoveEvents" "OnStatusRemoved"
 
 // ==================================== Real Injury ====================================

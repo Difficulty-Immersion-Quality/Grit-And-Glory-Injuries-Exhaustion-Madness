@@ -86,17 +86,17 @@ data "Properties" "IsHidden"
 //
 data "StatsFunctors" "IF(context.HasContextFlag(StatsFunctorContext.OnHealed)):ApplyStatus(GOON_GRIT_GLORY_SMALL_SKIN_TUMOURS_REMOVAL_HEALING,100,0);IF(context.HasContextFlag(StatsFunctorContext.OnStatusApplied)):ApplyStatus(GOON_GRIT_GLORY_SMALL_SKIN_TUMOURS_REMOVAL,100,0)"
 data "StatsFunctorContext" "OnHealed;OnStatusApplied"
-data "Conditions" "(context.HasContextFlag(StatsFunctorContext.OnHealed)) or (context.HasContextFlag(StatsFunctorContext.OnStatusApplied) and StatusId('GOON_INJURY_KIT_INJURY_REMOVAL') or StatusId('GOON_LESSER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_GREATER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_HEAL_INJURY_REMOVAL') or StatusId('GOON_REGENERATE_INJURY'))"
+data "Conditions" "(context.HasContextFlag(StatsFunctorContext.OnHealed)) or (context.HasContextFlag(StatsFunctorContext.OnStatusApplied) and StatusId('GOON_INJURY_KIT_INJURY_REMOVAL') or StatusId('GOON_LESSER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_GREATER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_HEAL_INJURY_REMOVAL') or StatusId('GOON_REGENERATE_INJURY_REMOVAL'))"
 
 // Status for use in configuration to disable/enable default removal system
 new entry "GOON_GRIT_GLORY_SMALL_SKIN_TUMOURS_REMOVAL"
 type "StatusData"
 data "StatusType" "BOOST"
-// Injury: Severe Bruising
-data "DisplayName" "hb9b656deg732cg4b1eg8957gf2daba2aa2b8"
+// Injury: Small Skin Tumours
+data "DisplayName" "h21e9c90agf1c0g4431g9499gdb97d0122013"
 //
-data "Description" "h9046416fg1d3dg42acg9761gd3bc088082d6"
-data "DescriptionParams" "DealDamage(1, Bludgeoning);DealDamage(1, Force)"
+data "Description" "ha637e8f0geedfg4e72ga368ga5e055e5802e"
+data "DescriptionParams" ""
 data "TooltipSave" "Constitution"
 data "Icon" "PassiveFeature_Generic_Blood"
 data "FormatColor" "Red"

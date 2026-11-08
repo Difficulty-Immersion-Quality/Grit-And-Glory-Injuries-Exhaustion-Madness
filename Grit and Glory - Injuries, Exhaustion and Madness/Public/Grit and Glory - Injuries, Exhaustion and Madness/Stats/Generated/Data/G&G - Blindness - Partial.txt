@@ -17,7 +17,7 @@ data "StackPriority" "1"
 data "StackType" "Overwrite"
 data "OnApplyConditions" "Goon_IsCreatureBlindable(context.Source)"
 data "OnApplyFunctors" "IF(HasStatus('GOON_DAMAGE_DEALT_COLD')):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_OCULAR_DAMAGE,100,-1);IF(not HasStatus('GOON_DAMAGE_DEALT_COLD')):ApplyStatus(GOON_REAL_INJURY_GRIT_GLORY_PARTIAL_BLINDNESS,100,-1)"
-data "RemoveConditions" "not HasStatus('GOON_REAL_INJURY_GRIT_GLORY_PARTIAL_BLINDNESS') and not HasStatus('GOON_REAL_INJURY_GRIT_GLORY_OCULAR_DAMAGE')"
+data "RemoveConditions" "not HasAnyStatus({'GOON_REAL_INJURY_GRIT_GLORY_PARTIAL_BLINDNESS','GOON_REAL_INJURY_GRIT_GLORY_OCULAR_DAMAGE'})"
 data "RemoveEvents" "OnStatusRemoved"
 
 // ==================================== Real Injury ====================================
@@ -97,7 +97,7 @@ data "Properties" "IsHidden"
 //
 data "StatsFunctors" "IF(context.HasContextFlag(StatsFunctorContext.OnStatusApplied)):ApplyStatus(GOON_GRIT_GLORY_PARTIAL_BLINDNESS_REMOVAL,100,0)"
 data "StatsFunctorContext" "OnStatusApplied"
-data "Conditions" "(context.HasContextFlag(StatsFunctorContext.OnStatusApplied) and StatusId('GOON_INJURY_KIT_INJURY_REMOVAL') or StatusId('GOON_LESSER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_GREATER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_HEAL_INJURY_REMOVAL') or StatusId('GOON_REGENERATE_INJURY'))"
+data "Conditions" "(context.HasContextFlag(StatsFunctorContext.OnStatusApplied) and StatusId('GOON_INJURY_KIT_INJURY_REMOVAL') or StatusId('GOON_LESSER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_GREATER_RESTORATION_INJURY_REMOVAL') or StatusId('GOON_HEAL_INJURY_REMOVAL') or StatusId('GOON_REGENERATE_INJURY_REMOVAL'))"
 
 // Status for use in configuration to disable/enable default removal system
 new entry "GOON_GRIT_GLORY_PARTIAL_BLINDNESS_REMOVAL"
