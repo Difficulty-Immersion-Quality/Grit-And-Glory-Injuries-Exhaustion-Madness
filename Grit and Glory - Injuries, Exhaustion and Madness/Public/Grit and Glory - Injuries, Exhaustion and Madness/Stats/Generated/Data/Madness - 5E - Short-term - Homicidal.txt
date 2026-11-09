@@ -44,7 +44,7 @@ data "DescriptionParams" ""
 data "TooltipSave" "Wisdom"
 data "Icon" "statIcons_Madness"
 data "FormatColor" "Red"
-data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator;ApplyToDead;IgnoreResting;LoseControl;OverheadOnTurn;InitiateCombat;BringIntoCombat"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator;IgnoreResting;LoseControl;OverheadOnTurn;InitiateCombat;BringIntoCombat"
 //
 data "StackId" "GOON_HOMICIDAL_SHORTTERM_MADNESS_TECHNICAL"
 data "StackPriority" ""
