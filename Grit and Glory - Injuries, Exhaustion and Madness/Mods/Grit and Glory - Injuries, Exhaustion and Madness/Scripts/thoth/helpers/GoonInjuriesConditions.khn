@@ -5,10 +5,10 @@ function Goon_IsCreatureBlindable(target)
     target = target or context.Target
 
     if not Goon_InjuryEligibilityCheck(target).Result     then return ConditionResult(false) end
+    if Tagged('BLINDSIGHT', target).Result                then return ConditionResult(false) end
+    if IsImmuneToStatus('SG_Blinded', target).Result      then return ConditionResult(false) end
     if IsImmuneToStatus('BLINDED', target).Result         then return ConditionResult(false) end
     if IsImmuneToStatus('BLINDNESS', target).Result       then return ConditionResult(false) end
-    if IsImmuneToStatus('SG_Blinded', target).Result      then return ConditionResult(false) end
-    if Tagged('BLINDSIGHT', target).Result                then return ConditionResult(false) end
     return ConditionResult(true)
 end
 
@@ -40,7 +40,7 @@ end
 function Goon_InjuryEligibilityCheck(target)
     target = target or context.Target
 
-    if IsImmuneToStatus('SG_Condition', target).Result and not IsDowned(target).Result then 
+    if IsImmuneToStatus('SG_Condition', target).Result and not IsDowned(target).Result and not Dead(target).Result then 
         return ConditionResult(false) 
     end
 
