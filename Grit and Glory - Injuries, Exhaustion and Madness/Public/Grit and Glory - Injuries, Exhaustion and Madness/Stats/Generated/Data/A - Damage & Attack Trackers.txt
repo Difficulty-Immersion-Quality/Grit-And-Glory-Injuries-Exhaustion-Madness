@@ -148,7 +148,15 @@ data "StatusType" "BOOST"
 using "GOON_ATTACKED_TEMPLATE"
 
 // ==================================== Detect character being downed (used by SE in _InjuryCommonLogic) ====================================
+
 new entry "GOON_DOWNED_TRACKER"
 type "StatusData"
 data "StatusType" "BOOST"
 data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+
+new entry "GOON_DOWNED_REMOVED_TRACKER"
+type "StatusData"
+data "StatusType" "BOOST"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+data "RemoveEvents" "OnStatusApplied"
+data "RemoveConditions" "StatusId('DOWNED')"

@@ -40,9 +40,18 @@ end
 function Goon_InjuryEligibilityCheck(target)
     target = target or context.Target
 
-    if IsImmuneToStatus('SG_Condition', target).Result and not IsDowned(target).Result and not Dead(target).Result then 
-        return ConditionResult(false) 
-    end
+    -- Ext.Osiris.RegisterListener("DownedChanged", 2, "after", function(character, isDowned)
+    --     if isDowned == 1 then
+    --         Osi.ApplyStatus(character, "GOON_DOWNED_TRACKER", 6)
+    --     else
+    --         -- Scrapped for not doing what the sigma I hoped it would: Needed by the Goon_InjuryEligibilityCheck khn function, because there's a brief window where the character is not downed while still being immune to SG_Condition...
+    --         Osi.ApplyStatus(character, "GOON_DOWNED_REMOVED_TRACKER", 6)
+    --     end
+    -- end)
+
+    -- if IsImmuneToStatus('SG_Condition', target).Result and not IsDowned(target).Result and not Dead(target).Result and not HasStatus('GOON_DOWNED_REMOVED_TRACKER', target).Result then 
+    --     return ConditionResult(false) 
+    -- end
 
     if HasPassive('Ethereal', target).Result        then return ConditionResult(false) end
     if Tagged('SCRYING_EYE', target).Result         then return ConditionResult(false) end
