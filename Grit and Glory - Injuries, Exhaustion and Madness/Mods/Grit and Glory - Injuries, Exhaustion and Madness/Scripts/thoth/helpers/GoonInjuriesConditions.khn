@@ -40,10 +40,13 @@ end
 function Goon_InjuryEligibilityCheck(target)
     target = target or context.Target
 
-    if HasPassive('Ethereal', target).Result           then return ConditionResult(false) end
-    if IsImmuneToStatus('SG_Condition', target).Result then return ConditionResult(false) end
-    if Tagged('SCRYING_EYE', target).Result            then return ConditionResult(false) end
-    if Tagged('BANITE_BANEGHOST', target).Result       then return ConditionResult(false) end
+    if IsImmuneToStatus('SG_Condition', target).Result and not IsDowned(target).Result then 
+        return ConditionResult(false) 
+    end
+
+    if HasPassive('Ethereal', target).Result        then return ConditionResult(false) end
+    if Tagged('SCRYING_EYE', target).Result         then return ConditionResult(false) end
+    if Tagged('BANITE_BANEGHOST', target).Result    then return ConditionResult(false) end
 
     local statuses = { 'DEBRIS_THRESHOLD_LESSER',
                        'DEBRIS_THRESHOLD',
